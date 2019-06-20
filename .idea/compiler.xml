@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-common" />
+        <module name="cloud-config-server-1001" />
+        <module name="cloud-consumer-hystrix-dashboard-90" />
+        <module name="cloud-consumer-hystrix-turbine-feign-config-80" />
+        <module name="cloud-eureka-server-config-2001" />
+        <module name="cloud-eureka-server-config-2002" />
+        <module name="cloud-eureka-server-config-2003" />
+        <module name="cloud-provider-hystrix-config-3001" />
+        <module name="cloud-provider-hystrix-config-3002" />
+        <module name="cloud-provider-hystrix-config-3003" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-consumer-80" target="1.8" />
+      <module name="cloud-consumer-91" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud-config-server-1001" options="" />
+      <module name="cloud-consumer-80" options="" />
+      <module name="cloud-consumer-91" options="-parameters" />
+      <module name="cloud-consumer-hystrix-dashboard-90" options="" />
+      <module name="cloud-consumer-hystrix-turbine-feign-config-80" options="" />
+      <module name="cloud-eureka-server-config-2001" options="" />
+      <module name="cloud-eureka-server-config-2002" options="" />
+      <module name="cloud-eureka-server-config-2003" options="" />
+      <module name="cloud-provider-hystrix-config-3001" options="" />
+      <module name="cloud-provider-hystrix-config-3002" options="" />
+      <module name="cloud-provider-hystrix-config-3003" options="" />
+    </option>
+  </component>
+</project>

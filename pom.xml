@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zqx.springcloud</groupId>
+    <artifactId>cloud</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>cloud-common</module>
+        <module>cloud-config-server-1001</module>
+        <module>cloud-eureka-server-config-2001</module>
+        <module>cloud-eureka-server-config-2002</module>
+        <module>cloud-eureka-server-config-2003</module>
+        <module>cloud-provider-hystrix-config-3001</module>
+        <module>cloud-provider-hystrix-config-3002</module>
+        <module>cloud-provider-hystrix-config-3003</module>
+        <module>cloud-consumer-hystrix-turbine-feign-config-80</module>
+        <module>cloud-consumer-hystrix-dashboard-90</module><!-- 仪表盘-->
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- 编码-->
+        <maven.compiler.source>1.8</maven.compiler.source><!-- 编译版本-->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <druid.version>1.1.10</druid.version><!-- 阿里巴巴的连接池版本-->
+    </properties>
+
+    <!-- 父项目中加了依赖管理，子项目中可以直接使用，子项目中直接加groupId和artifactId,不需要加版本了，因为版本已经在父项目中规定好了-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Edgware.SR4</version>
+                <type>pom</type>
+                <scope>import</scope><!--parent导入,parent中已经引入了很多包有一定的版本，如果要另外制定特定的版本，可以自己手动引入特定版本的包 -->
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.13.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 构建的时候解析src/main/resource下的配置文件，其实就是application.properties解析以$开头和结尾的信息-->
+    <build>
+        <finalName>microservice</finalName><!--项目名称-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin><!-- 引入一个插件，这个插件的作用就是解析$开头和结尾的信息，能够读取一些变量，常量就不需要解析-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimit>$</delimit>
+                    </delimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
